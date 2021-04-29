@@ -1,6 +1,7 @@
 # M3DeTR: Multi-representation, Multi-scale, Mutual-relation 3D Object Detection with Transformers
 
-The paper is avialble on arxiv [here](https://arxiv.org/abs/2104.11896).
+The code base for [M3DeTR: Multi-representation, Multi-scale, Mutual-relation 3D Object Detection with Transformers](https://arxiv.org/abs/2104.11896)
+<br>**Tianrui Guan***, **Jun Wang***, Shiyi Lan, Rohan Chandra, Zuxuan Wu, Larry Davis, Dinesh Manocha
 
 Code will be released soon.
 
