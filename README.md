@@ -4,7 +4,7 @@ The code base for [M3DeTR: Multi-representation, Multi-scale, Mutual-relation 3D
 <br>**Tianrui Guan***, **Jun Wang***, Shiyi Lan, Rohan Chandra, Zuxuan Wu, Larry Davis, Dinesh Manocha
 
 
-**Updates**: Dec 30 -- Code will be released before the WACV 2022 conference.
+**Updates**: Dec 30 -- Code will be released after the WACV 2022 conference.
 
 ## Abstract
 <div style="text-align: justify">We present a novel architecture for 3D object detection, M3DeTR, which combines different point cloud representations (raw, voxels, bird-eye view) with different feature scales based on multi-scale feature pyramids. M3DeTR is the first approach that unifies multiple point cloud representations, feature scales, as well as models mutual relationships between point clouds simultaneously using transformers. We perform extensive ablation experiments that highlight the benefits of fusing representation and scale, and modeling the relationships. Our method achieves state-of-the-art performance on the KITTI 3D object detection dataset and Waymo Open Dataset. Results show that M3DeTR improves the baseline significantly by 1.48% mAP for all classes on Waymo Open Dataset. In particular, our approach ranks 1st on the well-known KITTI 3D Detection Benchmark for both car and cyclist classes, and ranks 1st on Waymo Open Dataset with single frame point cloud input. </div>
