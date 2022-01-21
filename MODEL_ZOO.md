@@ -1,4 +1,4 @@
-# M3DeTR Model Zoo and Baselines
+# M3DETR Model Zoo and Baselines
 
 ## Introduction
 
@@ -23,7 +23,7 @@ This file documents a collection of models reported in our paper.
 <th valign="bottom">download</th>
 <!-- TABLE BODY -->
 <!-- ROW: maskformer2_R50_bs16_50ep -->
- <tr><td align="left"><a href="https://github.com/rayguan97/M3DeTR/blob/main/tools/cfgs/m3detr_models/m3detr_waymo_1000.yaml">M3DeTR</a></td>
+ <tr><td align="left"><a href="https://github.com/rayguan97/M3DETR/blob/main/tools/cfgs/m3detr_models/m3detr_waymo_1000.yaml">M3DETR</a></td>
 <td align="center">2</td>
 <td align="center">4</td>
 <td align="center">2</td>
@@ -35,7 +35,7 @@ This file documents a collection of models reported in our paper.
 
 <!-- TABLE BODY -->
 <!-- ROW: maskformer2_R50_bs16_50ep -->
- <tr><td align="left"><a href="https://github.com/rayguan97/M3DeTR/blob/main/tools/cfgs/m3detr_models/m3detr_waymo_1500.yaml">M3DeTR</a></td>
+ <tr><td align="left"><a href="https://github.com/rayguan97/M3DETR/blob/main/tools/cfgs/m3detr_models/m3detr_waymo_1500.yaml">M3DETR</a></td>
 <td align="center">2</td>
 <td align="center">4</td>
 <td align="center">2</td>

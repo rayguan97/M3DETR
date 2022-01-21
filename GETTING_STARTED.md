@@ -3,11 +3,11 @@ Please see [Getting Started with OpenPCDet](https://github.com/open-mmlab/OpenPC
 
 
 
-## Preparing Datasets for M3DeTR
+## Preparing Datasets for M3DETR
 
 ### Expected dataset structure for Waymo Open Dataset
 ```
-M3DeTR
+M3DETR
 ├── data
 │   ├── waymo
 │   │   │── ImageSets
@@ -26,8 +26,8 @@ M3DeTR
 ├── tools
 ```
 
-The dataset configs are located within [tools/cfgs/dataset_configs](https://github.com/rayguan97/M3DeTR/blob/main/tools/cfgs/dataset_configs), 
-and the model configs are located within [tools/cfgs/m3detr_models](https://github.com/rayguan97/M3DeTR/blob/main/tools/cfgs/m3detr_models) for different datasets. 
+The dataset configs are located within [tools/cfgs/dataset_configs](https://github.com/rayguan97/M3DETR/blob/main/tools/cfgs/dataset_configs), 
+and the model configs are located within [tools/cfgs/m3detr_models](https://github.com/rayguan97/M3DETR/blob/main/tools/cfgs/m3detr_models) for different datasets. 
 
 
 ### Inference with Pre-trained Models
