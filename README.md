@@ -43,3 +43,11 @@ Please cite our work if you found it useful,
     pages     = {772-782}
 }
 ```
+
+# License
+
+This project is released under the [Apache 2.0 license](LICENSE).
+
+# Acknowledgement
+
+The source code of GANav is based on [OpenPCDet](https://github.com/open-mmlab/OpenPCDet). 
