@@ -6,7 +6,7 @@ This file documents a collection of models reported in our paper.
 
 #### How to Read the Tables
 * The "Name" column contains a link to the config file. 
-*  Note that ”l” and ”h” represent layer number and head dimension of M3 Transformers, respectively. "Top" denotes the number of proposals used for keypoint sampling from RPN stage. ”Rel. Trans.” and ”Rep. and Scal. Trans.” refer to mutual-relation trans-former, and multi-representation and multi- scale transformer, respectively.
+*  Note that ”l” and ”h” represent layer number and head dimension of M3 Transformers, respectively. "Top" denotes the number of proposals used for keypoint sampling from RPN stage. ”Rel. Trans.” and ”Rep. and Scal. Trans.” refer to mutual-relation trans-former, and multi-representation and multi- scale transformer, respectively. "mAP" represents 3D mean average precision (mAP) on LEVEL_1 difficulty in the Vehicle class with IoU threshold of 0.7 on the full 202 Waymo Validation Set.
 
 ## Waymo Open Dataset Model Zoo
 
