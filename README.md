@@ -50,4 +50,4 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 # Acknowledgement
 
-The source code of GANav is based on [OpenPCDet](https://github.com/open-mmlab/OpenPCDet). 
+The source code of M3DETR is based on [OpenPCDet](https://github.com/open-mmlab/OpenPCDet). 
