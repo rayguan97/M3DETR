@@ -11,9 +11,9 @@
 conda create -n m3detr python=3.6 -y
 conda activate m3detr
 conda install pytorch=1.6.0 torchvision cudatoolkit=10.2 -c pytorch
-python setup.py develop
 pip install spconv-cu102
 pip install tqdm scipy scikit-image
 git clone https://github.com/rayguan97/M3DETR.git
 cd M3DETR
+python setup.py develop
 ```
