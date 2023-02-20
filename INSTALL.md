@@ -23,7 +23,7 @@ conda create -n m3detr python=3.6 -y
 conda activate m3detr
 conda install pytorch=1.9.1 torchvision cudatoolkit=11.1 -c pytorch -c nvidia
 pip install spconv-cu113	
-pip install pyyaml numba llvmlite tensorboardX SharedArray easydict tqdm scipy scikit-image
+pip install pyyaml numba llvmlite tensorboardX SharedArray easydict tqdm scipy scikit-image imageio
 git clone https://github.com/rayguan97/M3DETR.git
 cd M3DETR
 python setup.py develop
