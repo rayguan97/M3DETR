@@ -46,3 +46,29 @@ This file documents a collection of models reported in our paper.
 </tr>
 
 </tbody></table>
+
+
+## KITTI Dataset Model Zoo
+
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom">Name</th>
+<th valign="bottom">L_Rel_Trans</th>
+<th valign="bottom">H_Rel_Trans</th>
+<th valign="bottom">L_Scal_Trans</th>
+<th valign="bottom">H_Scal_Trans</th>
+<th valign="bottom">Top</th>
+<th valign="bottom">download</th>
+<!-- TABLE BODY -->
+<!-- ROW: maskformer2_R50_bs16_50ep -->
+ <tr><td align="left"><a href="https://github.com/rayguan97/M3DETR/blob/main/tools/cfgs/m3detr_models/m3detr_kitti2.yaml">M3DETR</a></td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">1000</td>
+<td align="center"><a href="https://drive.google.com/file/d/1Jwr9keDHVabebtf-ApSs7BH8-RDQIUmj/view?usp=sharing">model</a></td>
+</tr>
+
+</tbody></table>
