@@ -3,10 +3,12 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-pedestrian-hard)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-pedestrian-hard?p=m3detr-multi-representation-multi-scale) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-pedestrians-hard)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-pedestrians-hard?p=m3detr-multi-representation-multi-scale) \
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-waymo-vehicle)](https://paperswithcode.com/sota/3d-object-detection-on-waymo-vehicle?p=m3detr-multi-representation-multi-scale) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-waymo-cyclist)](https://paperswithcode.com/sota/3d-object-detection-on-waymo-cyclist?p=m3detr-multi-representation-multi-scale) \
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-waymo-pedestrian)](https://paperswithcode.com/sota/3d-object-detection-on-waymo-pedestrian?p=m3detr-multi-representation-multi-scale) \
-![GitHub Repo stars](https://img.shields.io/github/stars/rayguan97/M3DETR)
-![GitHub forks](https://img.shields.io/github/forks/rayguan97/M3DETR)
-![GitHub issues](https://img.shields.io/github/issues/rayguan97/M3DETR)
-![GitHub](https://img.shields.io/github/license/rayguan97/M3DETR)
+[![GitHub Repo stars](https://img.shields.io/github/stars/rayguan97/M3DETR)](https://github.com/rayguan97/M3DETR/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/rayguan97/M3DETR)](https://github.com/rayguan97/M3DETR/network)
+[![GitHub issues](https://img.shields.io/github/issues/rayguan97/M3DETR)](https://github.com/rayguan97/M3DETR/issues)
+[![GitHub](https://img.shields.io/github/license/rayguan97/M3DETR)](https://github.com/rayguan97/M3DETR/blob/main/LICENSE)
+
+<!--- ![Codacy Badge](https://api.codacy.com/project/badge/Grade/63847d9328f64fce9c137b03fcafcc27) -->
 
 
 # M3DETR: Multi-representation, Multi-scale, Mutual-relation 3D Object Detection with Transformers
