@@ -1,3 +1,5 @@
+# M3DETR: Multi-representation, Multi-scale, Mutual-relation 3D Object Detection with Transformers
+
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-cars-hard-val)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-cars-hard-val?p=m3detr-multi-representation-multi-scale) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-cars-hard)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-cars-hard?p=m3detr-multi-representation-multi-scale) \
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-cyclist-hard-val)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-cyclist-hard-val?p=m3detr-multi-representation-multi-scale) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-cyclists-hard)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-cyclists-hard?p=m3detr-multi-representation-multi-scale) \
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-pedestrian-hard)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-pedestrian-hard?p=m3detr-multi-representation-multi-scale) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/m3detr-multi-representation-multi-scale/3d-object-detection-on-kitti-pedestrians-hard)](https://paperswithcode.com/sota/3d-object-detection-on-kitti-pedestrians-hard?p=m3detr-multi-representation-multi-scale) \
@@ -10,8 +12,6 @@
 
 <!--- ![Codacy Badge](https://api.codacy.com/project/badge/Grade/63847d9328f64fce9c137b03fcafcc27) -->
 
-
-# M3DETR: Multi-representation, Multi-scale, Mutual-relation 3D Object Detection with Transformers
 
 The code base for [M3DETR: Multi-representation, Multi-scale, Mutual-relation 3D Object Detection with Transformers](https://openaccess.thecvf.com/content/WACV2022/html/Guan_M3DETR_Multi-Representation_Multi-Scale_Mutual-Relation_3D_Object_Detection_With_Transformers_WACV_2022_paper.html)
 <br>**Tianrui Guan***, **Jun Wang***, Shiyi Lan, Rohan Chandra, Zuxuan Wu, Larry Davis, Dinesh Manocha
