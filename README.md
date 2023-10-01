@@ -185,6 +185,16 @@ python -m torch.distributed.launch --nproc_per_node=1 train.py --launcher pytorc
 
 </td></tr></table>
 
+## References
+ - [M3DETR: Multi-representation, Multi-scale, Mutual-relation 3D Object Detection with Transformers](https://arxiv.org/pdf/2104.11896.pdf)
+ - [PV-RCNN: Point-Voxel Feature Set Abstraction for 3D Object Detection](https://arxiv.org/abs/1912.13192)
+ - [PointPillars: Fast Encoders for Object Detection from Point Clouds](https://arxiv.org/abs/1812.05784)
+ - [VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection](https://arxiv.org/abs/1711.06396)
+ - [SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers](https://arxiv.org/abs/2105.15203)
+ - [Longformer: The Long-Document Transformer](https://arxiv.org/abs/2004.05150)
+ - [LineFormer: Rethinking Line Chart Data Extraction as Instance Segmentation](https://arxiv.org/abs/2305.01837)
+
+
 ## Citation
 Please cite the original authors work if you found it useful,
 
@@ -198,11 +208,3 @@ Please cite the original authors work if you found it useful,
     pages     = {772-782}
 }
 ```
-
-# License
-
-This project is released under the [Apache 2.0 license](LICENSE).
-
-# Acknowledgement
-
-The source code of M3DETR is based on [OpenPCDet](https://github.com/open-mmlab/OpenPCDet). 
