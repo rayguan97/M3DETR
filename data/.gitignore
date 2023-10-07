@@ -1,0 +1,9 @@
+# ignore all data file types
+*.pkl
+*.zip
+*.txt
+*.bin
+*.png
+*.tfrecord
+*.npy
+LICENSE
