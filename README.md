@@ -30,11 +30,10 @@ small changes were required we reiterate the development environment setup here.
 These instructions are tailored for Ubuntu 22.04 and require a decent NVIDIA GPU. The development environment requires [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html). With that installed, set up a `conda` environment and build the package:
 
 ```bash
-conda create -n m3detr python=3.6 -y
+conda create -n m3detr python=3.10 -y
 conda activate m3detr
-conda install pytorch=1.9.1 torchvision cudatoolkit=11.1 -c pytorch -c nvidia
-pip install spconv-cu113	
-pip install pyyaml numba llvmlite tensorboardX SharedArray easydict tqdm scipy scikit-image imageio
+conda install pytorch torchvision pytorch-cuda=12.1 -c pytorch -c nvidia
+pip install spconv-cu120 Cython
 git clone https://github.com/danielmohansahu/M3DETR.git
 cd M3DETR
 python setup.py develop
@@ -135,7 +134,7 @@ conda activate m3detr
 
 # execute test script (e.g. for the pre-trained Kitti model)
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 test.py \
+python -m torch.distributed.run --nproc_per_node=1 test.py \
     --launcher pytorch --cfg_file ./cfgs/kitti_models/M3DETR.yaml \
     --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
 ```
@@ -149,7 +148,7 @@ conda activate m3detr
 
 # execute test script (e.g. for the pre-trained Waymo 1500 epoch model)
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 test.py \
+python -m torch.distributed.run --nproc_per_node=1 test.py \
     --launcher pytorch --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml \
     --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
 ```
@@ -169,7 +168,7 @@ conda activate m3detr
 
 # execute train script
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 train.py \
+python -m torch.distributed.run --nproc_per_node=1 train.py \
     --launcher pytorch --cfg_file ./cfgs/kitti_models/M3DETR.yaml \
     --workers 1
 ```
@@ -183,7 +182,7 @@ conda activate m3detr
 
 # execute train script
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 train.py \
+python -m torch.distributed.run --nproc_per_node=1 train.py \
     --launcher pytorch --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml \
     --workers 1
 ```
