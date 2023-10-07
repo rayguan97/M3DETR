@@ -5,7 +5,7 @@ DATA_CONFIG:
 
 
 MODEL:
-    NAME: Ours_3d
+    NAME: M3DETR
 
     VFE:
         NAME: MeanVFE
@@ -225,7 +225,7 @@ MODEL:
 
 
 OPTIMIZATION:
-    BATCH_SIZE_PER_GPU: 4
+    BATCH_SIZE_PER_GPU: 1
     NUM_EPOCHS: 45
 
     OPTIMIZER: adam_onecycle
