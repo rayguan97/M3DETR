@@ -61,7 +61,7 @@ M3DETR
 │   ├── kitti
 │   │   │── ImageSets
 │   │   │── training
-│   │   │   ├──calib & velodyne & label_2 & image_2 & (optional: planes) & (optional: depth_2)
+│   │   │   ├──calib & velodyne & label_2 & image_2
 │   │   │── testing
 │   │   │   ├──calib & velodyne & image_2
 ├── pcdet
@@ -69,7 +69,8 @@ M3DETR
 
 # 2. process data and generate infos
 cd M3DETR
-python -m pcdet.datasets.kitti.kitti_dataset create_kitti_infos tools/cfgs/dataset_configs/kitti_dataset.yaml
+python -m pcdet.datasets.kitti.kitti_dataset create_kitti_infos \ 
+        tools/cfgs/dataset_configs/kitti_dataset.yaml
 ```
 
 </td>
@@ -83,7 +84,8 @@ conda activate m3detr
 pip3 install --upgrade pip
 pip3 install waymo-open-dataset-tf-2-1-0
 
-# 2. Register and download official Waymo Open Dataset: https://waymo.com/open/download/
+# 2. Register and download official Waymo Open Dataset: 
+# https://waymo.com/open/download/
 # Get version v1.4.2 and download the archived files.
 # Extract all *.tar files to the 'data/waymo/raw_data' directory.
 
@@ -113,7 +115,8 @@ M3DETR
 # 3. process data and generate infos
 # N.B. This is _extremely_ slow, and could take several days.
 cd M3DETR
-python -m pcdet.datasets.waymo.waymo_dataset --func create_waymo_infos --cfg_file tools/cfgs/dataset_configs/waymo_dataset.yaml
+python -m pcdet.datasets.waymo.waymo_dataset --func create_waymo_infos \
+        --cfg_file tools/cfgs/dataset_configs/waymo_dataset.yaml
 ```
 
 </td></tr></table>
@@ -132,9 +135,9 @@ conda activate m3detr
 
 # execute test script (e.g. for the pre-trained Kitti model)
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 test.py --launcher pytorch \
-    --cfg_file ./cfgs/m3detr_models/m3detr_kitti.yaml --workers 1 \
-    --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
+python -m torch.distributed.launch --nproc_per_node=1 test.py \
+    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_kitti.yaml \
+    --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
 ```
 
 </td>
@@ -146,9 +149,9 @@ conda activate m3detr
 
 # execute test script (e.g. for the pre-trained Waymo 1500 epoch model)
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 test.py --launcher pytorch \
-    --cfg_file ./cfgs/m3detr_models/m3detr_waymo_1500.yaml --workers 1 \
-    --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
+python -m torch.distributed.launch --nproc_per_node=1 test.py \
+    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_waymo_1500.yaml \
+    --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
 ```
 
 </td></tr></table>
@@ -166,8 +169,9 @@ conda activate m3detr
 
 # execute train script
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 train.py --launcher pytorch \
-    --cfg_file ./cfgs/m3detr_models/m3detr_kitti.yaml --workers 1
+python -m torch.distributed.launch --nproc_per_node=1 train.py \
+    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_kitti.yaml \
+    --workers 1
 ```
 
 </td>
@@ -179,8 +183,9 @@ conda activate m3detr
 
 # execute train script
 cd tools/
-python -m torch.distributed.launch --nproc_per_node=1 train.py --launcher pytorch \
-    --cfg_file ./cfgs/m3detr_models/m3detr_waymo_1500.yaml --workers 1
+python -m torch.distributed.launch --nproc_per_node=1 train.py \
+    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_waymo_1500.yaml \
+    --workers 1
 ```
 
 </td></tr></table>
