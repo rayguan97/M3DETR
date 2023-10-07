@@ -136,7 +136,7 @@ conda activate m3detr
 # execute test script (e.g. for the pre-trained Kitti model)
 cd tools/
 python -m torch.distributed.launch --nproc_per_node=1 test.py \
-    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_kitti.yaml \
+    --launcher pytorch --cfg_file ./cfgs/kitti_models/M3DETR.yaml \
     --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
 ```
 
@@ -150,7 +150,7 @@ conda activate m3detr
 # execute test script (e.g. for the pre-trained Waymo 1500 epoch model)
 cd tools/
 python -m torch.distributed.launch --nproc_per_node=1 test.py \
-    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_waymo_1500.yaml \
+    --launcher pytorch --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml \
     --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
 ```
 
@@ -170,7 +170,7 @@ conda activate m3detr
 # execute train script
 cd tools/
 python -m torch.distributed.launch --nproc_per_node=1 train.py \
-    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_kitti.yaml \
+    --launcher pytorch --cfg_file ./cfgs/kitti_models/M3DETR.yaml \
     --workers 1
 ```
 
@@ -184,7 +184,7 @@ conda activate m3detr
 # execute train script
 cd tools/
 python -m torch.distributed.launch --nproc_per_node=1 train.py \
-    --launcher pytorch --cfg_file ./cfgs/m3detr_models/m3detr_waymo_1500.yaml \
+    --launcher pytorch --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml \
     --workers 1
 ```
 

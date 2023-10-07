@@ -5,7 +5,7 @@ from .pointpillar import PointPillar
 from .pv_rcnn import PVRCNN
 from .second_net import SECONDNet
 from .ours import PointTRCNN
-from .ours_3d import PointTRCNN3D
+from .m3detr import PointTRCNN3D
 from .second_net_iou import SECONDNetIoU
 from .caddn import CaDDN
 from .voxel_rcnn import VoxelRCNN
@@ -20,7 +20,7 @@ __all__ = {
     'PointPillar': PointPillar,
     'PointRCNN': PointRCNN,
     "Ours": PointTRCNN,
-    "Ours_3d": PointTRCNN3D,
+    "M3DETR": PointTRCNN3D,
     'SECONDNetIoU': SECONDNetIoU,
     'CaDDN': CaDDN,
     'VoxelRCNN': VoxelRCNN,
