@@ -33,7 +33,7 @@ These instructions are tailored for Ubuntu 22.04 and require a decent NVIDIA GPU
 conda create -n m3detr python=3.10 -y
 conda activate m3detr
 conda install pytorch torchvision pytorch-cuda=12.1 -c pytorch -c nvidia
-pip install spconv-cu120 Cython
+pip install spconv-cu120 cython numpy==1.25
 git clone https://github.com/danielmohansahu/M3DETR.git
 cd M3DETR
 python setup.py develop
