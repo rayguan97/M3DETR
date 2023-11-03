@@ -1,14 +1,44 @@
 import pickle
 import time
+from time import perf_counter
 
+import functools
 import numpy as np
 import torch
-from torch.profiler import profile, ProfilerActivity
 import tqdm
 
 from pcdet.models import load_data_to_gpu
 from pcdet.utils import common_utils
 
+
+# some global variables to track statistics
+stats = {
+    'time': common_utils.RunningAverage(),
+    'max_memory_allocated': common_utils.RunningAverage(),
+    'max_memory_reserved': common_utils.RunningAverage()
+}
+
+def profile(f):
+    """ Simple decorator to collect time / memory usage statistics."""
+    @functools.wraps(f)
+    def wrapper(*args, **kwargs):
+        # initialize timers
+        start = perf_counter()
+
+        # call method
+        res = f(*args, **kwargs)
+
+        # update and print out statistics
+        global stats
+        print("------------------------------------ PROFILING -----------------------------------")
+        print(f"Time: {stats['time'](perf_counter() - start):.3f} seconds")
+        for key in ('memory_reserved', 'max_memory_reserved'):
+            print(f"{key}: {stats[key](getattr(torch.cuda, key)(0))/1024**3} GB")
+        print("----------------------------------------------------------------------------------")
+
+        # return results
+        return res
+    return wrapper
 
 def statistics_info(cfg, ret_dict, metric, disp_dict):
     for cur_thresh in cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST:
@@ -19,16 +49,7 @@ def statistics_info(cfg, ret_dict, metric, disp_dict):
     disp_dict['recall_%s' % str(min_thresh)] = \
         '(%d, %d) / %d' % (metric['recall_roi_%s' % str(min_thresh)], metric['recall_rcnn_%s' % str(min_thresh)], metric['gt_num'])
 
-def inference_trace_handler(result_dir, profiler):
-    """ Callback executed when profiling trace is completed. """
-    # log to stdout
-    print(profiler.key_averages().table(sort_by="self_cuda_time_total", row_limit=10))
-    print(profiler.key_averages().table(sort_by="self_cpu_time_total", row_limit=10))
-    # set up hooks for tensorboard, chrome trace, flametrace
-    torch.profiler.tensorboard_trace_handler(result_dir / "tensorboard")(profiler)
-    profiler.export_stacks(result_dir / "gpu_profiler_stacks.txt", "self_cuda_time_total")
-    profiler.export_stacks(result_dir / "cpu_profiler_stacks.txt", "self_cpu_time_total")
-
+@profile
 def eval_one_epoch(cfg, model, dataloader, epoch_id, logger, dist_test=False, save_to_file=False, result_dir=None):
     result_dir.mkdir(parents=True, exist_ok=True)
 
@@ -61,26 +82,21 @@ def eval_one_epoch(cfg, model, dataloader, epoch_id, logger, dist_test=False, sa
     if cfg.LOCAL_RANK == 0:
         progress_bar = tqdm.tqdm(total=len(dataloader), leave=True, desc='eval', dynamic_ncols=True)
     start_time = time.time()
-    with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
-                    record_shapes=True, profile_memory=True, with_stack=True,
-                    schedule=torch.profiler.schedule(wait=1, warmup=1, active=3),
-                    on_trace_ready=lambda p : inference_trace_handler(result_dir, p)) as p:
-        for i, batch_dict in enumerate(dataloader):
-            load_data_to_gpu(batch_dict)
-            with torch.no_grad():
-                pred_dicts, ret_dict = model(batch_dict)
-            disp_dict = {}
+    for i, batch_dict in enumerate(dataloader):
+        load_data_to_gpu(batch_dict)
+        with torch.no_grad():
+            pred_dicts, ret_dict = model(batch_dict)
+        disp_dict = {}
 
-            statistics_info(cfg, ret_dict, metric, disp_dict)
-            annos = dataset.generate_prediction_dicts(
-                batch_dict, pred_dicts, class_names,
-                output_path=final_output_dir if save_to_file else None
-            )
-            det_annos += annos
-            if cfg.LOCAL_RANK == 0:
-                progress_bar.set_postfix(disp_dict)
-                progress_bar.update()
-            p.step()
+        statistics_info(cfg, ret_dict, metric, disp_dict)
+        annos = dataset.generate_prediction_dicts(
+            batch_dict, pred_dicts, class_names,
+            output_path=final_output_dir if save_to_file else None
+        )
+        det_annos += annos
+        if cfg.LOCAL_RANK == 0:
+            progress_bar.set_postfix(disp_dict)
+            progress_bar.update()
 
     if cfg.LOCAL_RANK == 0:
         progress_bar.close()

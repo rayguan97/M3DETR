@@ -1,5 +1,7 @@
 import glob
 import os
+import functools
+from time import perf_counter
 
 import torch
 import tqdm
@@ -7,7 +9,36 @@ import time
 from torch.nn.utils import clip_grad_norm_
 from pcdet.utils import common_utils, commu_utils
 
+# some global variables to track statistics
+stats = {
+    'time': common_utils.RunningAverage(),
+    'max_memory_allocated': common_utils.RunningAverage(),
+    'max_memory_reserved': common_utils.RunningAverage()
+}
 
+def profile(f):
+    """ Simple decorator to collect time / memory usage statistics."""
+    @functools.wraps(f)
+    def wrapper(*args, **kwargs):
+        # initialize timers
+        start = perf_counter()
+
+        # call method
+        res = f(*args, **kwargs)
+
+        # update and print out statistics
+        global stats
+        print("------------------------------------ PROFILING -----------------------------------")
+        print(f"Time: {stats['time'](perf_counter() - start):.3f} seconds")
+        for key in ('memory_reserved', 'max_memory_reserved'):
+            print(f"{key}: {stats[key](getattr(torch.cuda, key)(0))/1024**3} GB")
+        print("----------------------------------------------------------------------------------")
+
+        # return results
+        return res
+    return wrapper
+
+@profile
 def train_one_epoch(model, optimizer, train_loader, model_func, lr_scheduler, accumulated_iter, optim_cfg,
                     rank, tbar, total_it_each_epoch, dataloader_iter, tb_log=None, leave_pbar=False):
     if total_it_each_epoch == len(train_loader):
@@ -133,7 +164,6 @@ def train_model(model, optimizer, train_loader, model_func, lr_scheduler, optim_
                 save_checkpoint(
                     checkpoint_state(model, optimizer, trained_epoch, accumulated_iter), filename=ckpt_name,
                 )
-
 
 def model_state_to_cpu(model_state):
     model_state_cpu = type(model_state)()  # ordered dict

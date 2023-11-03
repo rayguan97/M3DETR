@@ -12,6 +12,16 @@ import torch.distributed as dist
 import torch.multiprocessing as mp
 
 
+class RunningAverage:
+    """ Convenience class to calculate a running average. """
+    def __init__(self):
+        self.total = 0
+        self.count = 0
+    def __call__(self, value : float) -> float:
+        self.total += value
+        self.count += 1
+        return self.total / self.count
+
 def check_numpy_to_torch(x):
     if isinstance(x, np.ndarray):
         return torch.from_numpy(x).float(), True
