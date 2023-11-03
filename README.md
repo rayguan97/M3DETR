@@ -4,6 +4,8 @@ This project is an optimization effort for the [M3DETR](https://github.com/raygu
 the original [website](https://openaccess.thecvf.com/content/WACV2022/html/Guan_M3DETR_Multi-Representation_Multi-Scale_Mutual-Relation_3D_Object_Detection_With_Transformers_WACV_2022_paper.html)
 and [paper](https://arxiv.org/pdf/2104.11896.pdf) for detailed explanations and attribution. The following assumes familiarity with the original project.
 
+Please see the attached Jupyter Notebook [evaluation.ipynb](evaluation.ipynb) for an example of how to use this repository for training and inference.
+
 ## Overview
 
 The M3DETR architecture has shown impressive results for 3D Object Detection against a number of open dataset challenges, including the Waymo Open Dataset and the KITTI 3D Detection Benchmark.
@@ -14,11 +16,100 @@ eschew improvements to the _performance_ metrics employed in these benchmarks an
 
 Metric | Explanation
 --- | ---
-Model Size (GB) | Total size of the resulting model (.pth).
-Training VRAM (GB) | Amount of GPU memory required during training.
-Inference VRAM (GB) | Amount of GPU memory required during inference.
-Training Time (h) | Amount of time required to train a new model from scratch.
-Inference Rate (hz) | Rate at which inference can be run.
+Model Size (MB) | Total size of the resulting model (.pth).
+Training VRAM (GB) | Amount of GPU memory reserved during training.
+Training Time per Epoch (min) | Amount of time required to train a new model from scratch.
+Inference VRAM (GB) | Amount of GPU memory reserved during inference.
+Inference Time (min) | Time to run inference against the full validation set.
+
+## Results
+
+The following results were collected on a system with an NVIDIA RTX 3500 and 13th Gen Intel(R) Core(TM) i7-13850HX against the KITTI dataset. Training and validation used a batch size of 3 and training ran for 40 epochs.
+
+#### Metric Results
+
+Metric | Baseline | Alternate
+--- | --- | ---
+Training Time per Epoch (min) | 17.3 | ???
+Training Reserved VRAM (GB) | 9.83 | ???
+Model Size (MB) | 158 | ???
+Inference Reserved VRAM (GB) | 2.89 | ???
+Inference Time (min) | 7.4 | ???
+
+#### Performance Results
+
+<table><tr><td> Baseline </td> <td> Alternate </td></tr>
+<tr><td> 
+
+```
+Car AP@0.70, 0.70, 0.70:
+bbox AP:95.2200, 89.4991, 89.0343
+bev  AP:90.4530, 88.0725, 87.4612
+3d   AP:89.5997, 79.3243, 78.7122
+aos  AP:95.17, 89.37, 88.80
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:98.1255, 94.1004, 91.8833
+bev  AP:95.0918, 90.4623, 88.4262
+3d   AP:92.1273, 82.8361, 81.9990
+aos  AP:98.08, 93.92, 91.62
+Car AP@0.70, 0.50, 0.50:
+bbox AP:95.2200, 89.4991, 89.0343
+bev  AP:95.2486, 89.4786, 89.0652
+3d   AP:95.2084, 89.4525, 89.0269
+aos  AP:95.17, 89.37, 88.80
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:98.1255, 94.1004, 91.8833
+bev  AP:98.1435, 94.2184, 93.9731
+3d   AP:98.0500, 94.1572, 93.8313
+aos  AP:98.08, 93.92, 91.62
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:69.7248, 63.4667, 60.7511
+bev  AP:61.7324, 54.8331, 50.1869
+3d   AP:59.4383, 51.3683, 46.8981
+aos  AP:64.03, 57.42, 54.81
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:70.5469, 64.0751, 60.7393
+bev  AP:61.8852, 53.3970, 48.9260
+3d   AP:58.8968, 50.2518, 44.9334
+aos  AP:64.78, 58.25, 54.85
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:69.7248, 63.4667, 60.7511
+bev  AP:73.7789, 68.0925, 64.6074
+3d   AP:73.7772, 67.9958, 64.4526
+aos  AP:64.03, 57.42, 54.81
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:70.5469, 64.0751, 60.7393
+bev  AP:75.4135, 68.4483, 64.9348
+3d   AP:75.4108, 68.3430, 64.8181
+aos  AP:64.78, 58.25, 54.85
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:87.8234, 77.8562, 75.7233
+bev  AP:82.2665, 69.7047, 65.3805
+3d   AP:81.7396, 67.9010, 62.2965
+aos  AP:87.72, 76.70, 74.55
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:92.6190, 80.4736, 76.6395
+bev  AP:84.5956, 70.3986, 65.9891
+3d   AP:84.0590, 68.0948, 63.4930
+aos  AP:92.51, 79.21, 75.35
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:87.8234, 77.8562, 75.7233
+bev  AP:84.3974, 72.3394, 70.1912
+3d   AP:84.3974, 72.3394, 70.1912
+aos  AP:87.72, 76.70, 74.55
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:92.6190, 80.4736, 76.6395
+bev  AP:88.9538, 74.8053, 71.1938
+3d   AP:88.9538, 74.8053, 71.1938
+aos  AP:92.51, 79.21, 75.35
+```
+
+</td>
+<td>
+
+???
+
+</td></tr></table>
 
 ## Baseline Reproduction
 
