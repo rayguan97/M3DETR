@@ -30,7 +30,7 @@ def profile(f):
         global stats
         print("------------------------------------ PROFILING -----------------------------------")
         print(f"Time: {stats['time'](perf_counter() - start):.3f} seconds")
-        for key in ('memory_reserved', 'max_memory_reserved'):
+        for key in ('max_memory_allocated', 'max_memory_reserved'):
             print(f"{key}: {stats[key](getattr(torch.cuda, key)(0))/1024**3} GB")
         print("----------------------------------------------------------------------------------")
 
