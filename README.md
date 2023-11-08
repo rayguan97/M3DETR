@@ -14,11 +14,166 @@ eschew improvements to the _performance_ metrics employed in these benchmarks an
 
 Metric | Explanation
 --- | ---
-Model Size (GB) | Total size of the resulting model (.pth).
-Training VRAM (GB) | Amount of GPU memory required during training.
-Inference VRAM (GB) | Amount of GPU memory required during inference.
-Training Time (h) | Amount of time required to train a new model from scratch.
-Inference Rate (hz) | Rate at which inference can be run.
+Model Size (MB) | Total size of the resulting model (.pth).
+Training VRAM (GB) | Amount of GPU memory reserved during training.
+Training Time per Epoch (min) | Amount of time required to train a new model from scratch.
+Inference VRAM (GB) | Amount of GPU memory reserved during inference.
+Inference Time (min) | Time to run inference against the full validation set.
+
+## Results
+
+The following results were collected on a system with an NVIDIA RTX 3500 and 13th Gen Intel(R) Core(TM) i7-13850HX against the KITTI dataset. Training and validation used a batch size of 3 and training ran for 40 epochs.
+
+#### Metric Results
+
+Metric | Baseline (`main`) | FPS (`farthest-point-sampling`) | Keypoints (`keypoints`)
+--- | --- | --- | ---
+Training Time per Epoch (min) | 17.3 | 24.4 | 12.9
+Training Reserved VRAM (GB) | 9.83 | 10.6 | 10.5
+Model Size (MB) | 158 | ??? | 158
+Inference Reserved VRAM (GB) | 2.89 | ??? | 10.5
+Inference Time (min) | 7.4 | ??? | 4.0
+
+#### Performance Results
+
+<table><tr><td> Baseline </td> <td> FPS </td> <td> Keypoints </td></tr>
+<tr><td> 
+
+```
+Car AP@0.70, 0.70, 0.70:
+bbox AP:95.2200, 89.4991, 89.0343
+bev  AP:90.4530, 88.0725, 87.4612
+3d   AP:89.5997, 79.3243, 78.7122
+aos  AP:95.17, 89.37, 88.80
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:98.1255, 94.1004, 91.8833
+bev  AP:95.0918, 90.4623, 88.4262
+3d   AP:92.1273, 82.8361, 81.9990
+aos  AP:98.08, 93.92, 91.62
+Car AP@0.70, 0.50, 0.50:
+bbox AP:95.2200, 89.4991, 89.0343
+bev  AP:95.2486, 89.4786, 89.0652
+3d   AP:95.2084, 89.4525, 89.0269
+aos  AP:95.17, 89.37, 88.80
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:98.1255, 94.1004, 91.8833
+bev  AP:98.1435, 94.2184, 93.9731
+3d   AP:98.0500, 94.1572, 93.8313
+aos  AP:98.08, 93.92, 91.62
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:69.7248, 63.4667, 60.7511
+bev  AP:61.7324, 54.8331, 50.1869
+3d   AP:59.4383, 51.3683, 46.8981
+aos  AP:64.03, 57.42, 54.81
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:70.5469, 64.0751, 60.7393
+bev  AP:61.8852, 53.3970, 48.9260
+3d   AP:58.8968, 50.2518, 44.9334
+aos  AP:64.78, 58.25, 54.85
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:69.7248, 63.4667, 60.7511
+bev  AP:73.7789, 68.0925, 64.6074
+3d   AP:73.7772, 67.9958, 64.4526
+aos  AP:64.03, 57.42, 54.81
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:70.5469, 64.0751, 60.7393
+bev  AP:75.4135, 68.4483, 64.9348
+3d   AP:75.4108, 68.3430, 64.8181
+aos  AP:64.78, 58.25, 54.85
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:87.8234, 77.8562, 75.7233
+bev  AP:82.2665, 69.7047, 65.3805
+3d   AP:81.7396, 67.9010, 62.2965
+aos  AP:87.72, 76.70, 74.55
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:92.6190, 80.4736, 76.6395
+bev  AP:84.5956, 70.3986, 65.9891
+3d   AP:84.0590, 68.0948, 63.4930
+aos  AP:92.51, 79.21, 75.35
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:87.8234, 77.8562, 75.7233
+bev  AP:84.3974, 72.3394, 70.1912
+3d   AP:84.3974, 72.3394, 70.1912
+aos  AP:87.72, 76.70, 74.55
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:92.6190, 80.4736, 76.6395
+bev  AP:88.9538, 74.8053, 71.1938
+3d   AP:88.9538, 74.8053, 71.1938
+aos  AP:92.51, 79.21, 75.35
+```
+
+</td>
+<td>
+
+???
+
+</td>
+<td>
+
+```
+Car AP@0.70, 0.70, 0.70:
+bbox AP:94.9234, 89.4703, 88.9115
+bev  AP:90.1308, 87.7842, 86.7742
+3d   AP:89.0632, 78.9549, 78.0183
+aos  AP:94.83, 89.25, 88.57
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:98.0193, 93.9798, 91.7316
+bev  AP:94.1815, 88.5378, 87.9349
+3d   AP:91.7143, 82.4454, 79.6741
+aos  AP:97.92, 93.70, 91.33
+Car AP@0.70, 0.50, 0.50:
+bbox AP:94.9234, 89.4703, 88.9115
+bev  AP:94.9774, 89.5529, 89.0708
+3d   AP:94.9209, 89.5122, 88.9926
+aos  AP:94.83, 89.25, 88.57
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:98.0193, 93.9798, 91.7316
+bev  AP:98.0297, 94.3425, 93.9074
+3d   AP:98.0043, 94.2364, 93.6941
+aos  AP:97.92, 93.70, 91.33
+Pedestrian AP@0.50, 0.50, 0.50:
+bbox AP:70.8399, 65.6474, 62.6417
+bev  AP:63.2657, 55.2871, 51.9859
+3d   AP:58.6724, 52.2804, 46.9396
+aos  AP:66.16, 60.43, 57.27
+Pedestrian AP_R40@0.50, 0.50, 0.50:
+bbox AP:71.7397, 66.3749, 62.6131
+bev  AP:62.9394, 54.7850, 50.1815
+3d   AP:58.0137, 50.4408, 45.5564
+aos  AP:66.43, 60.37, 56.49
+Pedestrian AP@0.50, 0.25, 0.25:
+bbox AP:70.8399, 65.6474, 62.6417
+bev  AP:76.5036, 72.0186, 68.1575
+3d   AP:76.4965, 71.9064, 68.0216
+aos  AP:66.16, 60.43, 57.27
+Pedestrian AP_R40@0.50, 0.25, 0.25:
+bbox AP:71.7397, 66.3749, 62.6131
+bev  AP:78.0136, 72.7060, 68.5944
+3d   AP:77.9877, 72.5817, 68.4592
+aos  AP:66.43, 60.37, 56.49
+Cyclist AP@0.50, 0.50, 0.50:
+bbox AP:88.3821, 81.1925, 75.9476
+bev  AP:84.7436, 73.1939, 68.9529
+3d   AP:83.8723, 68.8823, 65.8029
+aos  AP:87.06, 79.42, 74.12
+Cyclist AP_R40@0.50, 0.50, 0.50:
+bbox AP:92.7343, 82.7965, 78.6086
+bev  AP:88.1289, 73.8403, 69.5300
+3d   AP:86.7491, 69.4110, 65.2071
+aos  AP:91.19, 80.80, 76.60
+Cyclist AP@0.50, 0.25, 0.25:
+bbox AP:88.3821, 81.1925, 75.9476
+bev  AP:86.8161, 77.1106, 74.3826
+3d   AP:86.8161, 77.1106, 74.3826
+aos  AP:87.06, 79.42, 74.12
+Cyclist AP_R40@0.50, 0.25, 0.25:
+bbox AP:92.7343, 82.7965, 78.6086
+bev  AP:90.9542, 78.1351, 74.9714
+3d   AP:90.9542, 78.1351, 74.9714
+aos  AP:91.19, 80.80, 76.60
+```
+
+</td></tr></table>
 
 ## Baseline Reproduction
 
