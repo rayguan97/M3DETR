@@ -4,6 +4,8 @@ This project is an optimization effort for the [M3DETR](https://github.com/raygu
 the original [website](https://openaccess.thecvf.com/content/WACV2022/html/Guan_M3DETR_Multi-Representation_Multi-Scale_Mutual-Relation_3D_Object_Detection_With_Transformers_WACV_2022_paper.html)
 and [paper](https://arxiv.org/pdf/2104.11896.pdf) for detailed explanations and attribution. The following assumes familiarity with the original project.
 
+Please see the attached Jupyter Notebook [evaluation.ipynb](evaluation.ipynb) for an example of how to use this repository for training and inference.
+
 ## Overview
 
 The M3DETR architecture has shown impressive results for 3D Object Detection against a number of open dataset challenges, including the Waymo Open Dataset and the KITTI 3D Detection Benchmark.
@@ -289,9 +291,8 @@ conda activate m3detr
 
 # execute test script (e.g. for the pre-trained Kitti model)
 cd tools/
-python -m torch.distributed.run --nproc_per_node=1 test.py \
-    --launcher pytorch --cfg_file ./cfgs/kitti_models/M3DETR.yaml \
-    --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
+python test.py --cfg_file ./cfgs/kitti_models/M3DETR.yaml \
+    --ckpt {PATH_TO_MODEL} --eval_tag evaluation
 ```
 
 </td>
@@ -303,9 +304,8 @@ conda activate m3detr
 
 # execute test script (e.g. for the pre-trained Waymo 1500 epoch model)
 cd tools/
-python -m torch.distributed.run --nproc_per_node=1 test.py \
-    --launcher pytorch --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml \
-    --workers 1 --ckpt {PATH_TO_MODEL} --eval_tag evaluation --batch_size 1
+python test.py --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml \
+    --ckpt {PATH_TO_MODEL} --eval_tag evaluation
 ```
 
 </td></tr></table>
@@ -323,9 +323,7 @@ conda activate m3detr
 
 # execute train script
 cd tools/
-python -m torch.distributed.run --nproc_per_node=1 train.py \
-    --launcher pytorch --cfg_file ./cfgs/kitti_models/M3DETR.yaml \
-    --workers 1
+python train.py --cfg_file ./cfgs/kitti_models/M3DETR.yaml
 ```
 
 </td>
@@ -337,9 +335,7 @@ conda activate m3detr
 
 # execute train script
 cd tools/
-python -m torch.distributed.run --nproc_per_node=1 train.py \
-    --launcher pytorch --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml \
-    --workers 1
+python train.py --cfg_file ./cfgs/waymo_models/M3DETR_1500.yaml
 ```
 
 </td></tr></table>
